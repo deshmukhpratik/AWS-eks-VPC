@@ -23,5 +23,5 @@ spec:
             memory: 50Mi
         name: app1
         ports:
-        - containerPort: 3451
+        - containerPort: 30251
           protocol: TCP
