@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app1
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      run: app1
+  template:
+    metadata:
+      labels:
+        run: app1
+    spec:
+      containers:
+      - image: tc-moneyfy/apache4ingress:1.0
+        resources:
+          limits:
+            cpu: 100m
+            memory: 100Mi
+          requests: 
+            cpu: 50m 
+            memory: 50Mi
+        name: app1
+        ports:
+        - containerPort: 80
+          protocol: TCP
