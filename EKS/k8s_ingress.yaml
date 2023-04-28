@@ -14,7 +14,7 @@ spec:
         backend:
           serviceName: app1
           servicePort: 80
-      - path: /home
+      - path: /web
         backend:
           serviceName: app2
           servicePort: 8080
