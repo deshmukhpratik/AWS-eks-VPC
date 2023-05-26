@@ -28,3 +28,17 @@ spec:
         ports:
         - containerPort: 80
           protocol: TCP
+        livenessProbe:
+            initialDelaySeconds: 1
+            periodSeconds: 2
+            timeoutSeconds: 1
+            successThreshold: 1
+            failureThreshold: 1
+            httpGet:
+              host:
+              scheme: HTTP
+              path: /
+              httpHeaders:
+                - name: Host
+                  value: myapplication1.com
+              port: 80
