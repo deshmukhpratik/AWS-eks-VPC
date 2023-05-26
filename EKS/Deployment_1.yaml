@@ -40,5 +40,5 @@ spec:
               path: /
               httpHeaders:
                 - name: Host
-                  value: myapplication1.com
+                  value: tatacapitalmoneyfy.com
               port: 80
