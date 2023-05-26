@@ -7,6 +7,9 @@ spec:
   selector:
     matchLabels:
       run: app2
+  replicas: 2
+    strategy:
+      type: RollingUpdate
   template:
     metadata:
       labels:
