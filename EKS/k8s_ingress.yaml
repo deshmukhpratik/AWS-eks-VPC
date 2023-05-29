@@ -10,11 +10,11 @@ spec:
     host: tatacapitalmoneyfy.com
   - http:
       paths:
+      - path: /web/*
+        backend:
+          serviceName: app2
+          servicePort: 80
       - path: /
         backend:
           serviceName: app1
-          servicePort: 80
-      - path: /web
-        backend:
-          serviceName: app2
           servicePort: 80
