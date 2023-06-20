@@ -10,7 +10,7 @@ spec:
     host: tatacapitalmoneyfy.com
   - http:
       paths:
-      - path: /customer/login
+      - path: /customer/
         backend:
           serviceName: app2
           servicePort: 80
