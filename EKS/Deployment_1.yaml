@@ -30,6 +30,6 @@ spec:
           protocol: TCP
         readinessProbe:
           httpGet:
-            path: /ready
+            path: /tc-new
             port: 80
           successThreshold: 3
