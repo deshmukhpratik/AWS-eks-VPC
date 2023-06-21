@@ -18,3 +18,8 @@ spec:
         backend:
           serviceName: app1
           servicePort: 80
+  tls: 
+    - 
+      hosts: 
+        - tatacapitalmoneyfy.com
+      secretName: my-tls-secret
