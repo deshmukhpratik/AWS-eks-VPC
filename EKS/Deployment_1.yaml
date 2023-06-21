@@ -28,14 +28,8 @@ spec:
         ports:
         - containerPort: 80
           protocol: TCP
-        livenessProbe:
-            initialDelaySeconds: 1
-            periodSeconds: 2
-            httpGet:
-              host:
-              scheme: HTTP
-              path: /
-              httpHeaders:
-                - name: Host
-                  value: tatacapitalmoneyfy.com
-              port: 80
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 80
+          successThreshold: 3
