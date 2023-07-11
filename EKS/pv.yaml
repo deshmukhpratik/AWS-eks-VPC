@@ -8,7 +8,7 @@ spec:
   capacity:
     storage: 3Gi
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   awsElasticBlockStore:
     volumeID: <YOUR EBS VOLUME ID HERE>
     fsType: xfs
