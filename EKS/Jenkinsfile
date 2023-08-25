@@ -1,13 +1,16 @@
 pipeline {
+   tools {
+        maven 'Maven3'
+    }
     agent any
     environment {
         registry = "account_id.dkr.ecr.us-east-2.amazonaws.com/my-docker-repo"
     }
-}
+   
     stages {
         stage('Cloning Git') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/']]])     
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/akannan1087/springboot-app']]])     
             }
         }
       stage ('Build') {
@@ -38,7 +41,7 @@ pipeline {
         steps{   
             script {
                 withKubeConfig([credentialsId: 'K8S', serverUrl: '']) {
-                sh ('kubectl apply -f  deployment.yaml')
+                sh ('kubectl apply -f  eks-deploy-k8s.yaml')
                 }
             }
         }
