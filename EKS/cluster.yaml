@@ -2,22 +2,27 @@ apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 
 metadata:
-  name: my-eks-cluster
-  region: us-east-1 # Replace with your desired region
-
-nodeGroups:
-  - name: ng-1
-    instanceType: m5.large
-    minSize: 2
-    maxSize: 3
-    desiredCapacity: 2
-    privateNetworking: true
-    ssh:
-      publicKeyName: my-ec2-key-pair
+  name: eks-cluster
+  region: us-east-1
 
 managedNodeGroups:
-  - name: mng-1
-    instanceType: m5.large
-    minSize: 2
+  - name: eks-cluster-ng
+    instanceType: t5.large
+    minSize: 1
     maxSize: 3
     desiredCapacity: 2
+    volumeSize: 20
+    volumeType: gp3
+    ssh:
+      allow: true
+      publicKeyName: kube-ssh
+    tags:
+      Env: Dev
+    iam:
+      attachPolicyARNs:
+        - arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy
+        - arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy
+        - arn:aws:iam::aws:policy/ElasticLoadBalancingFullAccess
+        - arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
+      withAddonPolicies:
+        autoScaler: true
