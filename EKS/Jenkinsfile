@@ -33,6 +33,7 @@ pipeline {
          script {
                 sh 'aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin account_id.dkr.ecr.us-east-2.amazonaws.com'
                 sh 'docker push account_id.dkr.ecr.us-east-2.amazonaws.com/my-docker-repo:${BUILD_NUMBER}'
+                BUILD_NUMBER=${BUILD_NUMBER}
                 sh 'sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" /var/lib/jenkins/workspace/EKS/eks-deploy-k8s.yaml'
          }
         }
