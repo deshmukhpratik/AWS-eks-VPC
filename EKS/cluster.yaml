@@ -1,28 +1,19 @@
 apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
-
 metadata:
-  name: eks-cluster
-  region: us-east-1
-
-managedNodeGroups:
-  - name: eks-cluster-ng
-    instanceType: t5.large
-    minSize: 1
-    maxSize: 3
-    desiredCapacity: 2
-    volumeSize: 20
-    volumeType: gp3
-    ssh:
-      allow: true
-      publicKeyName: kube-ssh
-    tags:
-      Env: Dev
-    iam:
-      attachPolicyARNs:
-        - arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy
-        - arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy
-        - arn:aws:iam::aws:policy/ElasticLoadBalancingFullAccess
-        - arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
-      withAddonPolicies:
-        autoScaler: true
+  name: my-prod-cluster
+  region: us-west-2
+availabilityZones: [us-west-2a, us-west-2b]
+nodeGroups:
+  - name: ng-1
+    instanceType: m5.large
+    desiredCapacity: 1
+    availabilityZones: [us-west-2a]
+    launchTemplate:
+      name: my-launch-template
+  - name: ng-2
+    instanceType: m5.large
+    desiredCapacity: 1
+    availabilityZones: [us-west-2b]
+    launchTemplate:
+      name: my-launch-template
